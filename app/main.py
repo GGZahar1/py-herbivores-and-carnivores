@@ -23,7 +23,7 @@ class Animal:
     @classmethod
     def remove(cls) -> None:
 
-        cls.alive = [animal for animal in cls.alive if animal.health >= 0]
+        cls.alive = [animal for animal in cls.alive if animal.health > 0]
 
     def die(self) -> None:
         self.health = 0
