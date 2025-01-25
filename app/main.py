@@ -17,13 +17,17 @@ class Animal:
     def remove(cls) -> None:
         cls.alive = [animal for animal in cls.alive if animal.health >= 0]
 
+    def die(self) -> None:
+        self.health = 0
+        Animal.remove()
+
 class Herbivore(Animal):
     def hide(self) -> None:
         self.hidden = not self.hidden
 
 class Carnivore(Animal):
     def bite(self, animal: Animal) -> None:
-        if not self.hidden and isinstance(animal, Herbivore):
-            self.health -= 50
-            if self.health <= 0:
-                Animal.remove()
+        if isinstance(animal, Herbivore) and animal.health > 0 and not animal.hidden:
+            animal.health -= 50
+            if animal.health <= 0:
+                animal.die()
