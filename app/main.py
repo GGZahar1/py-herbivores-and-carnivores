@@ -20,10 +20,6 @@ class Animal:
             f"Hidden: {self.hidden}}}"
         )
 
-    @classmethod
-    def remove(cls) -> None:
-        cls.alive = [animal for animal in cls.alive if animal.health > 0]
-
 
 class Herbivore(Animal):
     def hide(self) -> None:
@@ -37,4 +33,4 @@ class Carnivore(Animal):
                 and animal.health > 0 and not animal.hidden):
             animal.health -= 50
             if animal.health <= 0:
-                Animal.remove()
+                Animal.alive.remove(animal)
